@@ -400,6 +400,8 @@ class LoadImagesAndLabels(Dataset):  # for training/testing
         else:
             cache = self.cache_labels(cache_path)  # cache
 
+        print('wrong :',[x for x in self.img_files if cache[x] == None])
+
         # Read cache
         cache.pop('hash')  # remove hash
         labels, shapes = zip(*cache.values())

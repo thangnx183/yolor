@@ -357,7 +357,7 @@ def train(hyp, opt, device, tb_writer=None, wandb=None):
                 ema.update_attr(model, include=['yaml', 'nc', 'hyp', 'gr', 'names', 'stride'])
             final_epoch = epoch + 1 == epochs
             if not opt.notest or final_epoch:  # Calculate mAP
-                if epoch >= 3:
+                if epoch >= 0:
                     results, maps, times = test.test(opt.data,
                                                  batch_size=batch_size*2,
                                                  imgsz=imgsz_test,
@@ -594,7 +594,7 @@ if __name__ == '__main__':
                 'mixup': (1, 0.0, 1.0)}  # image mixup (probability)
 
         assert opt.local_rank == -1, 'DDP mode not implemented for --evolve'
-        opt.notest, opt.nosave = True, True  # only test/save final epoch
+        opt.notest, opt.nosave = False, True  # only test/save final epoch
         # ei = [isinstance(x, (int, float)) for x in hyp.values()]  # evolvable indices
         yaml_file = Path(opt.save_dir) / 'hyp_evolved.yaml'  # save best result here
         if opt.bucket:

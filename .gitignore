@@ -1,0 +1,10 @@
+coco/
+coco_stuff_yolo/
+mish-cuda/
+pytorch_wavelets/
+pytorch_wavelets/
+utils/__pycache__/
+yolor-d6.pt
+models/__pycache__/
+__pycache__/
+runs/
